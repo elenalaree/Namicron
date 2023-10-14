@@ -13,6 +13,7 @@ const checkedNames = document.getElementsByName('names');
 const finalName = document.getElementById('finalName');
 const saveName = document.getElementById("saveName");
 const saved = document.getElementById('savedId');
+const emptyFaves = document.getElementById('emptyFaves');
 buildFavorites()
 // functions
 function collectNames() {
@@ -196,10 +197,23 @@ generateName.addEventListener("submit", (e) => {
 // event listener for saveName
 saveName.addEventListener("click", (e)=> {
     e.preventDefault();
+    console.log(finalName.textContent)
+    if(finalName.textContent == "Please select one of the three options." || finalName.textContent == "Please select gender."|| finalName.textContent == "You cant save this.") {
+        finalName.textContent = "You cant save this.";
+    }
+    else
+   {
     let saveThis = finalName.textContent;
     favoriteNames.push(saveThis);
     buildFavorites(favoriteNames);
-    
     localStorage.setItem("names",JSON.stringify(favoriteNames));
+   } 
 
+})
+
+emptyFaves.addEventListener("click", (e)=> {
+    e.preventDefault();
+    localStorage.clear();
+    favoriteNames.length = 0;
+    buildFavorites(favoriteNames);
 })
