@@ -131,35 +131,6 @@ generateName.addEventListener("submit", (e) => {
         else {
             final = "Please select one of the three options."
         }
-        if (genderType == 'male') {
-            // if only first name is checked, return 1 name
-            if ((names.includes('firstName') || names.includes('middleName')) && (names.length == 1)) {
-                final = createName(maleFirstNames);
-            }
-            // if first and middle are checked, return 2 names
-            else if ((names.includes('firstName') && names.includes('middleName')) && (names.length == 2)) {
-                final = firstMiddle(maleFirstNames);
-            }
-            // if first or middle name and last are checked
-            else if ((names.includes('firstName') || names.includes('middleName')) && (names.includes('lastName')) && (names.length == 2)) {
-                let first = createName(maleFirstNames);
-                let last = createName(lastNames);
-                final = first + " " + last;
-            }
-            // if first, middle, and last are checked
-            else if ((names.includes('firstName') && names.includes('middleName')) && (names.includes('lastName'))) {
-                let firstHalf = firstMiddle(maleFirstNames);
-                let last = createName(lastNames);
-                final = firstHalf + " " + last;
-            }
-            else if ((names.includes('lastName')) && (names.length == 1)) {
-                final = createName(lastNames);
-            }
-            else {
-                final = "Please select one of the three options."
-            }
-            
-        }
     } 
     else if (genderType == 'female') {
         // if only first name is checked, return 1 name

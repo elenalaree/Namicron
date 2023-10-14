@@ -1,10 +1,12 @@
+## Namicron
+
 # Overview
 
 Being a writer, I like having a name generator that could give me name combinations I might not have thought about. This program offers male or female names and offers the options for first, middle, and last names and any combination of those three is covered. It can save favorite names to local storage and clear local storage.
 
 {Provide a link to your YouTube demonstration. It should be a 4-5 minute demo of the software running and a walkthrough of the code. Focus should be on sharing what you learned about the language syntax.}
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Namicron Demo Video](https://youtu.be/9jMnq4MSfWk)
 
 # Development Environment
 
