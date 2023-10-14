@@ -18,7 +18,7 @@ buildFavorites()
 function collectNames() {
     console.log(favoriteNames)
     // Collect male and female first names
-    fetch('/namicron/json/firstNames.json')
+    fetch('./json/firstNames.json')
         .then(response => response.json())
         .then(data => {
             const male = data.maleFirstNames;
@@ -35,7 +35,7 @@ function collectNames() {
             console.error('Error fetching JSON:', error);
         });
     // Collect last names
-    fetch('../json/lastNames.json')
+    fetch('./json/lastNames.json')
         .then(response => response.json())
         .then(data => {
             let last = data.lastNames;
