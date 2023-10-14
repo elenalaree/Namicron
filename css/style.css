@@ -58,7 +58,7 @@ header h1 {
 	background-image: url(../images/paper.jpg);
 	background-size:cover;
 	background-repeat: no-repeat;
-	height:80vh;
+	min-height:80vh;
 	width: 80vw;
 	margin: 0 auto;
 	padding: 20px;
@@ -109,7 +109,7 @@ header h1 {
 /* Section for Favorites */
 
 .favorites {
-	height: 24vh
+	min-height: 24vh
 }
 
 .saved {
@@ -120,5 +120,11 @@ header h1 {
 }
 
 .saved li {
-	width: 25%
+	width: 50%
+}
+
+@media only screen and (min-width: 600px){
+	.saved li{
+		width: 25%;
+	}
 }
