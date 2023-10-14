@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,56 @@
     <link href="/css/style.css" rel="stylesheet">
 
 </head>
+
 <body>
-    <header></header>
+    <header>
+        <h1>Namicron</h1>
+    </header>
     <main>
-    <section class="pictureBox">
-        <button class="btn">Generate Name</button>
-    </section>
+        <section class="pictureBox">
+            <h3>Select the names you would like to generate and then submit.</h3>
+            <br>
+            <form id="saveName" method="post">
+                <div class="fullrow flex borderBox">
+                    <label for="gender">Gender:</label>
+                    <input type="radio" id="male" name="gender" class="circle-checkbox" value="male">
+                    <label for="male" class="circle-label">Male</label>
+                    <input type="radio" id="female" name="gender" class="circle-checkbox">
+                    <label for="female" class="circle-label">Female</label><br><br>
+                </div>
+                <div class="borderBox flex names">
+                    <label for="firstName">First Name:</label>
+                    <input type="checkbox" id="firstName" name="names" class="circle-checkbox">
+                    <label for="firstName" class="circle-label"></label><br><br>
+
+                    <label for="middleName">Middle Name:</label>
+                    <input type="checkbox" id="middleName" name="names" class="circle-checkbox">
+                    <label for="middleName" class="circle-label"></label><br><br>
+
+                    <label for="lastName">Last Name :</label>
+                    <input type="checkbox" id="lastName" name="names" class="circle-checkbox">
+                    <label for="lastName" class="circle-label"></label><br><br>
+                </div>
+                <div class="fullrow">
+                    <button type="submit" class="btn" id="submitName">Generate Name</button>
+                </div>
+            </form>
+            
+
+            <section class="borderBox generated">
+                <p>This is the name</p>
+                <button class="btn small">Save Name</button>
+            </section>
+            <section class="favorites borderBox">
+                <h2>Favorites</h2>
+                <ul class="saved">
+                    <li>Saved name</li>
+                    
+                </ul>
+            </section>
+        </section>
     </main>
     <script src="/js/script.js" type="module"></script>
 </body>
+
 </html>
