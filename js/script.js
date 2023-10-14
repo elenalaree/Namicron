@@ -18,7 +18,7 @@ buildFavorites()
 function collectNames() {
     console.log(favoriteNames)
     // Collect male and female first names
-    fetch('../json/firstNames.json')
+    fetch('/namicron/json/firstNames.json')
         .then(response => response.json())
         .then(data => {
             const male = data.maleFirstNames;
