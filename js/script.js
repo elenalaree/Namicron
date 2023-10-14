@@ -197,7 +197,6 @@ generateName.addEventListener("submit", (e) => {
 // event listener for saveName
 saveName.addEventListener("click", (e)=> {
     e.preventDefault();
-    console.log(finalName.textContent)
     if(finalName.textContent == "Please select one of the three options." || finalName.textContent == "Please select gender."|| finalName.textContent == "You cant save this.") {
         finalName.textContent = "You cant save this.";
     }
