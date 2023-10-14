@@ -3,7 +3,7 @@ const maleFirstNames = [];
 const femaleFirstNames = [];
 const lastNames = [];
 const favoriteNames = JSON.parse(localStorage.getItem('names')) || [];
-console.log(favoriteNames)
+
 
 
 // Selected elements
@@ -16,7 +16,7 @@ const saved = document.getElementById('savedId');
 buildFavorites()
 // functions
 function collectNames() {
-    console.log(favoriteNames)
+    
     // Collect male and female first names
     fetch('./json/firstNames.json')
         .then(response => response.json())
@@ -201,5 +201,5 @@ saveName.addEventListener("click", (e)=> {
     buildFavorites(favoriteNames);
     
     localStorage.setItem("names",JSON.stringify(favoriteNames));
-    console.log(favoriteNames);
+
 })
