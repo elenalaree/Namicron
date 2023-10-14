@@ -17,7 +17,7 @@
         <section class="pictureBox">
             <h3>Select the names you would like to generate and then submit.</h3>
             <br>
-            <form id="saveName" method="post">
+            <form id="generateName" method="post">
                 <div class="fullrow flex borderBox">
                     <label for="gender">Gender:</label>
                     <input type="radio" id="male" name="gender" class="circle-checkbox" value="male">
@@ -45,13 +45,13 @@
             
 
             <section class="borderBox generated">
-                <p>This is the name</p>
-                <button class="btn small">Save Name</button>
+                <p id="finalName">This is the name</p>
+                <button id="saveName" class="btn small">Save Name</button>
             </section>
             <section class="favorites borderBox">
                 <h2>Favorites</h2>
-                <ul class="saved">
-                    <li>Saved name</li>
+                <ul id="savedId" class="saved">
+                    
                     
                 </ul>
             </section>

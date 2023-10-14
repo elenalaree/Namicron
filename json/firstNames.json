@@ -1,5 +1,5 @@
 {
-    "womenFirstNames": [
+    "femaleFirstNames": [
         "Aria",
         "Luna",
         "Aurora",
@@ -46,7 +46,7 @@
         "Vivian",
         "Avery",
         "Zara",
-        "Sophie",
+        "Charlotte",
         "Clio",
         "Eirene",
         "Kalliope",
@@ -54,15 +54,20 @@
         "Thalia",
         "Ceres",
         "Eirene",
-        "Calliope",
-        "Clio",
+        "Nyala",
+        "Xayah",
         "Lavinia",
         "Penelope",
         "Rae",
         "Celeste",
         "Phaedra",
         "Eudocia",
-        "Rose"
+        "Rose",
+        "Poppy",
+        "Gemma",
+        "Piper",
+        "Jaide",
+        "Saige"
     ],
     "maleFirstNames": [
         "Orson",

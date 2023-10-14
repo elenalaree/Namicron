@@ -114,4 +114,11 @@ header h1 {
 
 .saved {
 	list-style-type:none;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.saved li {
+	width: 25%
 }

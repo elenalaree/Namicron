@@ -1,27 +1,47 @@
 // Collect the names from the json file
 const maleFirstNames = [];
 const femaleFirstNames = [];
-const lastNames = []
+const lastNames = [];
+const favoriteNames = JSON.parse(localStorage.getItem('names')) || [];
+console.log(favoriteNames)
+
+
+// Selected elements
+
+let generateName = document.getElementById("generateName");
+const checkedNames = document.getElementsByName('names');
+const finalName = document.getElementById('finalName');
+const saveName = document.getElementById("saveName");
+const saved = document.getElementById('savedId');
+buildFavorites()
+// functions
 function collectNames() {
+    console.log(favoriteNames)
+    // Collect male and female first names
     fetch('../json/firstNames.json')
         .then(response => response.json())
         .then(data => {
             const male = data.maleFirstNames;
-            const female = data.femaleFirstNames;
             male.forEach(element => {
                 maleFirstNames.push(element)
-
+            });
+            const female = data.femaleFirstNames;
+            female.forEach(element => {
+                femaleFirstNames.push(element)
             });
 
         })
         .catch(error => {
             console.error('Error fetching JSON:', error);
         });
+    // Collect last names
     fetch('../json/lastNames.json')
         .then(response => response.json())
         .then(data => {
-
-            let lastNames = data.lastNames;
+            let last = data.lastNames;
+            last.forEach(element => {
+                lastNames.push(element)
+            });
         })
         .catch(error => {
             console.error('Error fetching JSON:', error);
@@ -36,51 +56,150 @@ function getRandomName(name) {
     return randomName
 }
 
-function createName(name1) {
-    const first = getRandomName(name1);
+function createName(name) {
+    const first = getRandomName(name);
     return first;
-
-
 }
 
+function firstMiddle(name) {
+    let fname = createName(name);
+    let second = "";
+    do {
+        second = getRandomName(name);
+    }
+    while (fname == second);
+    return fname + " " + second;
+}
 
-let saveName = document.getElementById("saveName");
-saveName.addEventListener("submit", (e) => {
+// build favorites
+function buildFavorites(){
+    saved.innerHTML = "";
+    favoriteNames.forEach(element => {
+        let li = document.createElement('li');
+        li.innerHTML = element
+        saved.appendChild(li);
+    });
+}
+
+generateName.addEventListener("submit", (e) => {
     e.preventDefault();
+    
+    let final = '';
 
     const gender = document.querySelector('input[name=gender]:checked')
-    const genderType = gender['id']
-    console.log(genderType)
+    let genderType = "";
+    if(gender == null){
+        final = "Please pick a gender."
+    } else {
+        genderType = gender['id'];
+    }
+    ;
+    
     const names = [];
-    const checkedNames = document.getElementsByName('names');
+
     for (let i = 0; i < checkedNames.length; i++) {
         if (checkedNames[i].checked) {
             names.push(checkedNames[i].id);
         }
 
     }
-    let final = '';
-    console.log(names)
+    
     if (genderType == 'male') {
+        // if only first name is checked, return 1 name
         if ((names.includes('firstName') || names.includes('middleName')) && (names.length == 1)) {
+            final = createName(maleFirstNames);
+        }
+        // if first and middle are checked, return 2 names
+        else if ((names.includes('firstName') && names.includes('middleName')) && (names.length == 2)) {
+            final = firstMiddle(maleFirstNames);
+        }
+        else if ((names.includes('firstName') || names.includes('middleName')) && (names.includes('lastName')) && (names.length == 2)) {
             let first = createName(maleFirstNames);
-            final = first
-            
+            let last = createName(lastNames);
+
+            final = first + " " + last;
 
         }
-        else if ((names.includes('firstName') && names.includes('middleName')) && (names.length == 2)) {
-            let first = createName(maleFirstNames);
-            console.log(first)
-            do {
-                var second = getRandomName(maleFirstNames);
-                
-            }
-            while (first == second);
-            final = first + " " + second;
+        else if ((names.includes('firstName') && names.includes('middleName')) && (names.includes('lastName'))) {
+            let firstHalf = firstMiddle(maleFirstNames);
+            let last = createName(lastNames);
+
+            final = firstHalf + " " + last;
+
         }
         else {
-            console.log("Nope.")
+            final = "Please select one of the three options."
         }
-    console.log(final);
+        if (genderType == 'male') {
+            // if only first name is checked, return 1 name
+            if ((names.includes('firstName') || names.includes('middleName')) && (names.length == 1)) {
+                final = createName(maleFirstNames);
+            }
+            // if first and middle are checked, return 2 names
+            else if ((names.includes('firstName') && names.includes('middleName')) && (names.length == 2)) {
+                final = firstMiddle(maleFirstNames);
+            }
+            // if first or middle name and last are checked
+            else if ((names.includes('firstName') || names.includes('middleName')) && (names.includes('lastName')) && (names.length == 2)) {
+                let first = createName(maleFirstNames);
+                let last = createName(lastNames);
+                final = first + " " + last;
+            }
+            // if first, middle, and last are checked
+            else if ((names.includes('firstName') && names.includes('middleName')) && (names.includes('lastName'))) {
+                let firstHalf = firstMiddle(maleFirstNames);
+                let last = createName(lastNames);
+                final = firstHalf + " " + last;
+            }
+            else if ((names.includes('lastName')) && (names.length == 1)) {
+                final = createName(lastNames);
+            }
+            else {
+                final = "Please select one of the three options."
+            }
+            
+        }
+    } 
+    else if (genderType == 'female') {
+        // if only first name is checked, return 1 name
+        if ((names.includes('firstName') || names.includes('middleName')) && (names.length == 1)) {
+            final = createName(femaleFirstNames);
+        }
+        // if first and middle are checked, return 2 names
+        else if ((names.includes('firstName') && names.includes('middleName')) && (names.length == 2)) {
+            final = firstMiddle(femaleFirstNames);
+        }
+        // if first or middle name and last are checked
+        else if ((names.includes('firstName') || names.includes('middleName')) && (names.includes('lastName')) && (names.length == 2)) {
+            let first = createName(femaleFirstNames);
+            let last = createName(lastNames);
+            final = first + " " + last;
+        }
+        // if first, middle, and last are checked
+        else if ((names.includes('firstName') && names.includes('middleName')) && (names.includes('lastName'))) {
+            let firstHalf = firstMiddle(femaleFirstNames);
+            let last = createName(lastNames);
+            final = firstHalf + " " + last;
+        }
+        else if ((names.includes('lastName')) && (names.length == 1)) {
+            final = createName(lastNames);
+        }
+        else {
+            final = "Please select one of the three options."
+        }
     }
+    else {
+        final = "Please select gender."
+    }
+    finalName.textContent = final
+});
+// event listener for saveName
+saveName.addEventListener("click", (e)=> {
+    e.preventDefault();
+    let saveThis = finalName.textContent;
+    favoriteNames.push(saveThis);
+    buildFavorites(favoriteNames);
+    
+    localStorage.setItem("names",JSON.stringify(favoriteNames));
+    console.log(favoriteNames);
 })
